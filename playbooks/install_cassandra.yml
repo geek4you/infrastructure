@@ -5,4 +5,6 @@
   serial: 1
   remote_user: "{{ remote_user }}"
   roles:
-    - install_java8
+    - java8_install
+    - cassandra_download
+    - cassandra_install

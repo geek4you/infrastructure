@@ -1,0 +1,8 @@
+---
+- name: Untar Cassandra.
+  unarchive: src={{ cassandra_download }} dest={{ install_dest_dir }} copy=no
+  sudo: yes
+
+- name: Create symlink.
+  file: src={{ cassandra_dir }} dest={{ cassandra_current }} state=link
+  sudo: yes

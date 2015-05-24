@@ -1,0 +1,8 @@
+---
+- name: Create downloads folder.
+  file: path={{ common_download_folder }} state=directory
+  sudo: no
+
+- name: Download Cassandra.
+  get_url: url={{ cassandra_url }} dest={{ cassandra_download }}
+  sudo: no

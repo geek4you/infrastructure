@@ -1,6 +1,6 @@
 ---
 - name: Create downloads folder.
-  file: path={{ spark_download_folder }} state=directory
+  file: path={{ common_download_folder }} state=directory
   sudo: no
 
 - name: Download Spark.

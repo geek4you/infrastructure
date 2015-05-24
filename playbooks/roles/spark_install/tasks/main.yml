@@ -1,6 +1,6 @@
 ---
 - name: Untar Spark.
-  unarchive: src={{ spark_download }} dest={{ spark_dest_dir }} copy=no
+  unarchive: src={{ spark_download }} dest={{ install_dest_dir }} copy=no
   sudo: yes
 
 - name: Create symlink.
