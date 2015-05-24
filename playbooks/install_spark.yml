@@ -1,0 +1,10 @@
+---
+- name: Download and install Spark.
+  hosts: localhost
+  gather_facts: yes
+  serial: 1
+  remote_user: "{{ remote_user }}"
+  sudo: yes
+  roles:
+    - download_spark
+    - install_spark

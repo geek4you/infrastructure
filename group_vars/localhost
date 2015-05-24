@@ -1,0 +1,9 @@
+---
+remote_user: volcom
+spark_url: http://d3kbcqa49mib13.cloudfront.net/spark-1.2.2-bin-hadoop2.4.tgz
+spark_download: /home/volcom/Downloads/BigData/spark-1.2.2-bin-hadoop2.4.tgz
+spark_dir: /opt/spark-1.2.2-bin-hadoop2.4
+spark_dest_dir: /opt
+spark_current: /opt/spark-current
+spark_home: /opt/spark-current/bin
+environment_file: /home/volcom/.bashrc

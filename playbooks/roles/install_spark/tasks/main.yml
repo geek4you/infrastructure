@@ -1,0 +1,17 @@
+---
+- name: Untar Spark
+  unarchive: src={{ spark_download }} dest={{ spark_dest_dir }} copy=no
+
+- name: Create symlink
+  file: src={{ spark_dir }} dest={{ spark_current }} state=link
+
+# No need to clean up, Just keep a download folder maybe?
+#- name: Cleanup Spark download
+#  file: path={{ spark_download }} state=absent
+
+- name: Setup environment variables
+  lineinfile: dest={{ environment_file }} line="{{ item.line }}"
+  with_items:
+    - { line: 'export SPARK_HOME={{ spark_home }}' }
+    - { line:  'export PATH=$PATH:$SPARK_HOME' }
+  sudo: no
