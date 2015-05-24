@@ -1,0 +1,20 @@
+---
+- name: Add Java 8 repo to Ubuntu.
+  apt_repository: repo="ppa:webupd8team/java" state=present
+  sudo: yes
+
+- name: Set the selected licence.
+  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  sudo: yes
+
+- name: Set the licence is seen.
+  shell: /bin/echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
+  sudo: yes
+
+- name: Install Java 8.
+  apt: name="oracle-java8-installer" state=latest update-cache=yes force=yes
+  sudo: yes
+
+- name: Set default Java 8 environment variables.
+  apt: name="oracle-java8-set-default" state=latest update-cache=yes force=yes
+  sudo: yes

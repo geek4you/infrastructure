@@ -1,9 +1,8 @@
 ---
-- name: Download and install Spark.
+- name: Install Cassandra.
   hosts: localhost
   gather_facts: yes
   serial: 1
   remote_user: "{{ remote_user }}"
   roles:
-    - download_spark
-    - install_spark
+    - install_java8

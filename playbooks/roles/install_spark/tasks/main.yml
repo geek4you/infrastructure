@@ -1,9 +1,11 @@
 ---
 - name: Untar Spark.
   unarchive: src={{ spark_download }} dest={{ spark_dest_dir }} copy=no
+  sudo: yes
 
 - name: Create symlink.
   file: src={{ spark_dir }} dest={{ spark_current }} state=link
+  sudo: yes
 
 # No need to clean up, Just keep a download folder maybe?
 #- name: Cleanup Spark download
@@ -18,12 +20,15 @@
 
 - name: Put the slaves configuration file.
   template: src=slaves.conf.j2 dest={{ spark_slaves_conf }}
+  sudo: yes
 
 - name: Put the Spark environment configuration.
   template: src=spark-env.sh.j2 dest={{ spark_env_sh }}
+  sudo: yes
 
 - name: Install sshd if it doesn't exist.
   apt: name=ssh state=present
+  sudo: yes
 
 - name: Stop master and slaves if working.
   shell: "{{ spark_startup_dir }}/stop-all.sh"
