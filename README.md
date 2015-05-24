@@ -6,7 +6,8 @@ This is just a readme file that specifies how to run these configurations in ord
 Install Spark
 -------------
 
-This will download, copy to opt and install Spark. It will set the required environment variables and you should be up and running with a local
-installation of Spark. 
+This will download, copy to opt and install Spark. It will set the required environment variables, deploy the configs and start your master and slaves.
 
-	ansible-playbook -i hosts playbooks/install_spark.yml --ask-sudo-pass
+	ansible-playbook -i hosts playbooks/install_spark.yml --ask-sudo-pass --ask-pass
+
+> Note: This setup is mostly written for running Spark on your local machine. You might need to modify these scripts a bit if you wish to run Spark on a cluster. Mostly the changes would be in the config files - the `slaves` config file should be populated and live only on the master.

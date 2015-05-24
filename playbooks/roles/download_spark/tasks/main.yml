@@ -1,4 +1,8 @@
 ---
-- name: Download Spark
+- name: Create downloads folder.
+  file: path={{ spark_download_folder }} state=directory
+  sudo: no
+
+- name: Download Spark.
   get_url: url={{ spark_url }} dest={{ spark_download }}
   sudo: no
