@@ -6,3 +6,30 @@
 - name: Create symlink.
   file: src={{ cassandra_dir }} dest={{ cassandra_current }} state=link
   sudo: yes
+
+- name: Make sure the Cassandra lib folder is there and properly set up.
+  file: path={{ cassandra_lib }} state=directory owner={{ remote_user }} group={{ remote_group }} mode=0755
+  sudo: yes
+
+- name: Make sure the Cassandra log folder is there and properly set up.
+  file: path={{ cassandra_log }} state=directory owner={{ remote_user }} group={{ remote_group }} mode=0755
+  sudo: yes
+
+- name: Setup the right environment variables.
+  lineinfile: dest={{ environment_file }} line="{{ item.line }}"
+  with_items:
+    - { line: 'export CASSANDRA_HOME={{ cassandra_current }}' }
+    - { line:  'export PATH=$PATH:$CASSANDRA_HOME/bin' }
+  sudo: no
+
+- name: Deploy the Cassandra config file.
+  template: src=cassandra-env.sh.j2 dest={{ cassandra_env_sh }}
+  sudo: yes
+
+- name: Deploy the Cassandra cluster config file.
+  template: src=cassandra.yaml.j2 dest={{ cassandra_yaml }}
+  sudo: yes
+
+- name: Start cassandra.
+  shell: "{{ cassandra_current }}/bin/cassandra"
+  sudo: yes
