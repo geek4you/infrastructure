@@ -5,5 +5,5 @@
   serial: 1
   remote_user: "{{ remote_user }}"
   roles:
-    - download_spark
-    - install_spark
+    - spark_download
+    - spark_install
